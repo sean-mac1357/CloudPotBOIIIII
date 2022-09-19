@@ -2,20 +2,14 @@
 import sys
 import json
 import time
+import pyfiglet
 # In order to run this file make sure to add executable privileges then run in shell ./JSONparse.py log.json
 
 def srcIPcount(diction): # takes the documented logs into the function
     ip_dict = {} # creates an empty dictionary
     for log in diction: # for each log in the list
-        ei = log['eventid']
         si = log['src_ip'] # sets the item of each log's IP_src to the variable si
         sp = log['src_port']
-        di = log['dest_ip'] 
-        dp = log['dest_port'] 
-        ts = log['timestamp'] 
-        ut = log['unixtime'] 
-        ses = log['session']
-        sen = log['sensor']
         if si in ip_dict: # if 'variable si' is in the dictionary
             ip_dict[si] += 1 # add 1 to value part of dict
         else: # if 'variable si' isnt in dictionary this will automatically set the key
@@ -23,11 +17,12 @@ def srcIPcount(diction): # takes the documented logs into the function
     max_si_value = max(ip_dict.values()) # looks for the most common IP
     for key,value in ip_dict.items(): # for each key, value pair in dictionary
         if value == max_si_value: # if the value is the same as the most common IP
-            print("The Occurence of {0} in the adbhoney.json file: {1}".format(key, value))
+            print("*" * 100)
+            print("    ***           The Occurence of {0} in the adbhoney.json file: {1}                 ***".format(key, value))
+            print("*" * 100)
+            print()
+            time.sleep(4)
 
-def list_o_commands(iList):
-    for logs in iList:
-        print("hey")
 
 def main():
     file_name = sys.argv[1] # takes log.txt and assigns it to file_name
@@ -87,9 +82,6 @@ def main():
                 max_dur = cd4
                 duration = cd3
                 ipsrc = bc3
-
-            
-
         if lines[0] == '{"eventid": "adbhoney.command.input"':
             b1 = lines[1].replace('"input": ', '')
             b2 = b1.replace('"', '')
@@ -99,8 +91,14 @@ def main():
         conList.append(conStruct) # appends the merged key value pairs into the List
     
     while True:
+        print()
+        print("*" * 100)
+        print()
+        result = pyfiglet.figlet_format("CloudPotBOIIIII")
+        print(result)
+
         print("""
-            What would you like to know about this json file? (1-4)
+               What would you like to know about this json file? (1-4)
                     
                     1. Most common IP address to access the server?
 
@@ -114,9 +112,9 @@ def main():
         if user_choice == '1':
             srcIPcount(conList)
         elif user_choice == '2':
-            print("*" * 90)
-            print("***           The duration of {0} in the adbhoney.json file: {1}           ***".format(ipsrc, duration))
-            print("*" * 90)
+            print("*" * 100)
+            print("    ***           The duration of {0} in the adbhoney.json file: {1}           ***".format(ipsrc, duration))
+            print("*" * 100)
             time.sleep(4)
         elif user_choice == '3':
             print("*" * 100)
