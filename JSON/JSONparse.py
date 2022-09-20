@@ -39,7 +39,6 @@ def maxDuration(iplist, durlist):
     print(f'[blue]{"*" * 133}[/blue]')
     print()
     time.sleep(4)
-    print("The duration of {0} in the adbhoney.json file: {1}".format(ipsrc, duration))
 
 def main():
     logsList = []
