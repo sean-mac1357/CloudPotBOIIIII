@@ -61,8 +61,9 @@ def main():
             closList.append(log["src_ip"])
             durList.append(log["duration"])
         if log["eventid"] == "adbhoney.command.input":
-            if log["input"] not in inputList:
-                inputList.append(log["input"])
+            #if log["input"] not in inputList:   # uncomment lines 64 and 65 
+                #inputList.append(log["input"])  # then comment out line 66 if you just want unique commands
+            inputList.append(log["input"])  
 
     goodbyer = """
 
