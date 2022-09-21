@@ -61,7 +61,8 @@ def main():
             closList.append(log["src_ip"])
             durList.append(log["duration"])
         if log["eventid"] == "adbhoney.command.input":
-            inputList.append(log["input"])
+            if log["input"] not in inputList:
+                inputList.append(log["input"])
 
     goodbyer = """
 
